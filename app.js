@@ -1,9 +1,7 @@
 const recipesURL = "http://localhost:3000/recipes";
 const ingredientsURL = "http://localhost:3000/ingredients";
 
-const ingredientsSelect = document.querySelector("select[name=ingredient_id]");
-
-console.log(ingredientsSelect);
+const newRecipeForm = document.querySelector("form");
 
 fetch(recipesURL)
     .then(parseJSON)
@@ -15,17 +13,22 @@ fetch(ingredientsURL)
 
 function createIngredientOptions(ingredients) {
 
-    ingredients.map(ingredient => {
-        const ingredientOption = document.createElement("option");
-        ingredientOption.value = ingredient.id;
-        ingredientOption.textContent = ingredient.name;
+    ingredients.forEach(ingredient => {
+        const ingredientCheckbox = document.createElement("input");
+        ingredientCheckbox.type = "checkbox";
+        ingredientCheckbox.name = ingredient.name;
+        ingredientCheckbox.id = ingredient.id;
+        ingredientCheckbox.value = ingredient.id;
 
-        ingredientsSelect.append(ingredientOption);
+        const ingredientLabel = document.createElement("label");
+        ingredientLabel.htmlFor = ingredient.id;
+        ingredientLabel.textContent = ingredient.name;
+
+        newRecipeForm.append(ingredientLabel, ingredientCheckbox);
     })
 }
 
 function displayRecipes(recipes) {
-    console.log(recipes);
 
     recipes.forEach(recipe => {
         const recipeCard = document.createElement("div");
