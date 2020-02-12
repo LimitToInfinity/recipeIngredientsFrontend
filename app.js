@@ -16,9 +16,9 @@ function createIngredientOptions(ingredients) {
     ingredients.forEach(ingredient => {
         const ingredientCheckbox = document.createElement("input");
         ingredientCheckbox.type = "checkbox";
-        ingredientCheckbox.name = ingredient.name;
-        ingredientCheckbox.id = ingredient.id;
+        ingredientCheckbox.name = "ingredient_ids[]";
         ingredientCheckbox.value = ingredient.id;
+        ingredientCheckbox.id = ingredient.id;
 
         const ingredientLabel = document.createElement("label");
         ingredientLabel.htmlFor = ingredient.id;
